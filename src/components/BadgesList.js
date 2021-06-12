@@ -1,46 +1,43 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import './styles/BadgesList.css'
+import Gravatar from './Gravatar';
 
-import './styles/BadgesList.css';
-
-class BadgesListItem extends React.Component {
-  render() {
-    return (
-      <div className="BadgesListItem">
-        <img
-          className="BadgesListItem__avatar"
-          src={this.props.badge.avatarUrl}
-          alt={`${this.props.badge.firstName} ${this.props.badge.lastName}`}
-        />
-
-        <div>
-          <strong>
-            {this.props.badge.firstName} {this.props.badge.lastName}
-          </strong>
-          <br />@{this.props.badge.twitter}
-          <br />
-          {this.props.badge.jobTitle}
-        </div>
-      </div>
-    );
-  }
-}
-
-class BadgesList extends React.Component {
-  render() {
-    return (
-      <div className="BadgesList">
-        <ul className="list-unstyled">
-          {this.props.badges.map(badge => {
+class BadgesList extends React.Component{
+    
+    render(){
+        if(this.props.badges.length === 0){
             return (
-              <li key={badge.id}>
-                <BadgesListItem badge={badge} />
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    );
-  }
+                <React.Fragment>
+                    <h3>We don't find any badges</h3>
+                    <Link className="btn btn-primary" to="/badges/new">Create a new Badge</Link>
+                </React.Fragment>
+            )
+        }
+        return (<ul className="list-unstyled">
+        {this.props.badges.map((badge)=>{
+            return(
+            <li key={badge.id} className="card">
+                <Link className="text-reset text-decoration-none" to={`/badges/${badge.id}`}>
+                <div className="container-fluid">
+                <Gravatar className="Badge__avatar" 
+                email={badge.email} 
+                alt="avatar"/>
+                <div className="card-body" >
+                <h3 className="card_title">{badge.firstName} {badge.lastName}</h3>
+                <div className="container__twitter">
+                    <img className="icon__twitter" src="https://image.flaticon.com/icons/png/512/733/733579.png" alt="" />
+                    <span>@{badge.twitter}</span>
+                </div>
+                <p className="card-text"> {badge.jobTitle}</p>
+                </div>
+                </div>
+                </Link>
+            </li>
+            )
+        })}
+    </ul>);
+    }
 }
 
-export default BadgesList;
+export default BadgesList; 

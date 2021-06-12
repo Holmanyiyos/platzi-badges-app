@@ -1,21 +1,19 @@
-.Navbar {
-  width: 100%;
-  padding: 0.5rem 0;
-  background-color: #1C3643;
+.Navbar{
+    width: 100%;
+    background: #1c3643;
+    padding: 0.5rem 0;
 }
 
-.Navbar__brand {
-  color: #ffffff;
-
-  display: flex;
-  align-items: center;
+.Navbar__brand{
+    color: #fff;
+    display: flex;
+    align-items: center;
 }
 
-.Navbar__brand:hover {
-  color: #ffffff;
-  text-decoration: none;
+.Navbar__brand:hover{
+    color: #fff;
+    text-decoration: none;
 }
-
-.Navbar__brand-logo {
-  margin-right: 0.5rem;
+.Navbar__brand-logo{
+    margin-right: 0.5rem;
 }
