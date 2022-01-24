@@ -41,6 +41,7 @@ class BadgeNew extends React.Component{
             this.props.history.push('/badges');
         } catch(error){
             this.setState({loading: false, error: error})
+            console.log(this.state.form)
         }
     }
 
