@@ -33,6 +33,7 @@ class BadgeNew extends React.Component{
     handleSubmit = async e =>{
         e.preventDefault()
         this.setState({loading: true, error: null})
+        console.log(this.state.form)
 
         try{
             await api.badges.create(this.state.form)
@@ -41,7 +42,6 @@ class BadgeNew extends React.Component{
             this.props.history.push('/badges');
         } catch(error){
             this.setState({loading: false, error: error})
-            console.log(this.state.form)
         }
     }
 
