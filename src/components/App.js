@@ -14,7 +14,7 @@ function App(){
         <BrowserRouter>
             <Layout>
                 <Switch>
-                    <Route exact path="/" component={Homepage}/>
+                    <Route exact path="platzi-badges-app/" component={Homepage}/>
                     <Route exact path="/badges" component={Badges}/>
                     <Route exact path="/badges/new" component={BadgeNew}/>
                     <Route exact path="/badges/:badgeId" component={BadgeView}/>
