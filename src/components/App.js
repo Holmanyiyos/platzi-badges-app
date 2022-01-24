@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch,Route } from 'react-router-dom';
+import { HashRouter, Switch,Route } from 'react-router-dom';
 
 import BadgeNew from '../pages/BadgeNew';
 import Badges from '../pages/Badges';
@@ -11,10 +11,10 @@ import Layout from './Layout';
 
 function App(){
     return(
-        <BrowserRouter>
+        <HashRouter>
             <Layout>
                 <Switch>
-                    <Route exact path="platzi-badges-app/" component={Homepage}/>
+                    <Route exact path="/" component={Homepage}/>
                     <Route exact path="/badges" component={Badges}/>
                     <Route exact path="/badges/new" component={BadgeNew}/>
                     <Route exact path="/badges/:badgeId" component={BadgeView}/>
@@ -22,7 +22,7 @@ function App(){
                     <Route component={NotFound}/>
                 </Switch>
             </Layout>
-        </BrowserRouter>
+        </HashRouter>
     )
 }
 
