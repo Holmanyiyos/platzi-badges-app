@@ -12,13 +12,6 @@ import PageError from '../components/PageError';
 import api from '../api';
 
 class Badges extends React.Component{
-    // constructor(props){
-    //     super(props);
-    //     console.log('1. constructor');
-    //     this.state ={
-    //         data:[]
-    //     };
-    // }
     state = { 
         loading: true,
         error: null,
@@ -39,7 +32,6 @@ class Badges extends React.Component{
         }
     }
     // componentDidMount(){
-    //     console.log('3. componentdid mount');
     //     this.timeoutId = setTimeout(()=>{
     //         this.setState({
     //             data: [
@@ -91,7 +83,6 @@ class Badges extends React.Component{
     // };
 
     render(){
-        // console.log('2. render');
         if(this.state.loading){
             return <PageLoading/>;
         }
