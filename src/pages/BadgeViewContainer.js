@@ -3,7 +3,7 @@ import React from 'react';
 import PageLoading from '../components/PageLoading';
 import PageError from '../components/PageError';
 import BadgeView from './BadgeView'
-import api from '../api';
+import {apiProvider} from '../api';
 
 
 class BadgeViewContainer extends React.Component{
@@ -21,14 +21,14 @@ class BadgeViewContainer extends React.Component{
     fetchData = async ()=>{
         this.setState({loading: true, error: null});
 
-        try {
-            const data = await api.badges.read(
-                this.props.match.params.badgeId
-            );
-            this.setState({loading: false, data: data})
-        } catch (error) {
-            this.setState({loading: false, error: error})
-        };
+        // try {
+        //     const data = await api.badges.read(
+        //         this.props.match.params.badgeId
+        //     );
+        //     this.setState({loading: false, data: data})
+        // } catch (error) {
+        //     this.setState({loading: false, error: error})
+        // };
     
     }
     handleOpenModal = e =>{
@@ -40,15 +40,15 @@ class BadgeViewContainer extends React.Component{
     handleDeleteBadge= async e =>{
         this.setState({loading: true, error: null})
 
-        try{
-            await api.badges.remove(
-                this.props.match.params.badgeId
-            )
-            this.props.history.push('/badges')
-        } catch(error){
-        this.setState({loading: false, error: error})
+    //     try{
+    //         await api.badges.remove(
+    //             this.props.match.params.badgeId
+    //         )
+    //         this.props.history.push('/badges')
+    //     } catch(error){
+    //     this.setState({loading: false, error: error})
 
-        }
+    //     }
     }
     render(){
         if(this.state.loading){

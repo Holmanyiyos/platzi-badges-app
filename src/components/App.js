@@ -1,6 +1,6 @@
 import React from 'react';
 import { HashRouter, Switch,Route } from 'react-router-dom';
-
+import {badgeContext} from "../api"
 import BadgeNew from '../pages/BadgeNew';
 import Badges from '../pages/Badges';
 import Homepage from '../pages/Homepage';
@@ -11,6 +11,9 @@ import Layout from './Layout';
 
 function App(){
     return(
+        <badgeContext.Provider value={{
+            prueba
+        }}>
         <HashRouter>
             <Layout>
                 <Switch>
@@ -23,6 +26,7 @@ function App(){
                 </Switch>
             </Layout>
         </HashRouter>
+        </badgeContext.Provider>
     )
 }
 

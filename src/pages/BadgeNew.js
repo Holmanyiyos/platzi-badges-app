@@ -3,7 +3,7 @@ import React from 'react';
 import './styles/BadgeNew.css'
 import Badge from '../components/Badge';
 import BadgeForm from '../components/BadgeForm';
-import api from '../api';
+import {apiProvider} from '../api';
 import PageLoading from '../components/PageLoading';
 
 
@@ -35,14 +35,14 @@ class BadgeNew extends React.Component{
         this.setState({loading: true, error: null})
         console.log(this.state.form)
 
-        try{
-            await api.badges.create(this.state.form)
-            this.setState({loading: false})
+        // try{
+        //     await api.badges.create(this.state.form)
+        //     this.setState({loading: false})
 
-            this.props.history.push('/badges');
-        } catch(error){
-            this.setState({loading: false, error: error})
-        }
+        //     this.props.history.push('/badges');
+        // } catch(error){
+        //     this.setState({loading: false, error: error})
+        // }
     }
 
     render(){

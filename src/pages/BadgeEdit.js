@@ -3,7 +3,7 @@ import React from 'react';
 import './styles/BadgeEdit.css'
 import Badge from '../components/Badge';
 import BadgeForm from '../components/BadgeForm';
-import api from '../api';
+import {apiProvider} from '../api';
 import PageLoading from '../components/PageLoading';
 
 
@@ -28,13 +28,13 @@ class BadgeEdit extends React.Component{
     fetchData = async e =>{
         this.setState({loading:true, error: null})
 
-        try{
-            const data = await api.badges.read(this.props.match.params.badgeId)
+    //     try{
+    //         const data = await api.badges.read(this.props.match.params.badgeId)
 
-            this.setState({loading: false, form: data});
-        } catch(error){
-            this.setState({loading: false, error: error})
-        }
+    //         this.setState({loading: false, form: data});
+    //     } catch(error){
+    //         this.setState({loading: false, error: error})
+    //     }
     };
 
     handleChange= e =>{
@@ -50,14 +50,14 @@ class BadgeEdit extends React.Component{
         e.preventDefault()
         this.setState({loading: true, error: null})
 
-        try{
-            await api.badges.update(this.props.match.params.badgeId ,this.state.form)
-            this.setState({loading: false})
+        // try{
+        //     await api.badges.update(this.props.match.params.badgeId ,this.state.form)
+        //     this.setState({loading: false})
 
-            this.props.history.push('/badges');
-        } catch(error){
-            this.setState({loading: false, error: error})
-        }
+        //     this.props.history.push('/badges');
+        // } catch(error){
+        //     this.setState({loading: false, error: error})
+        // }
     }
 
     render(){
