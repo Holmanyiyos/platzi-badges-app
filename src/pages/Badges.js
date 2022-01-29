@@ -11,22 +11,20 @@ import PageError from '../components/PageError';
 
 
 
-const Badges =()=>{
-    const {prueba} = React.useContext(badgeContext)
-    const [state, setState] = React.useState({ 
-        loading: true,
-        error: false,
-        data: undefined
-    })
+function Badges (){
+    const {loading, setLoading,badgeList, setBadgeList, state, setState, data} = React.useContext(badgeContext)
     useEffect(()=>{
-       const myData = prueba()
-        setState({loading: false, data: myData})
+        if (data.length > 0) {
+            setLoading(false)
+            setState({error: null})
+        }else{
+            console.log(loading)
+        }
     },[])
     return(
-        (state.loading)?<PageLoading/> :
+        (loading)? <PageLoading/> : 
 
-        (state.error)?<PageError error={state.error}/> :
-        <React.Fragment>
+        (state.error)?<PageError error={state.error}/> :<React.Fragment>
                 <div className="Badges">
                     <div className="Badges__hero">
                         <div className="Badges__container">
@@ -42,7 +40,7 @@ const Badges =()=>{
 
                     <div className="Badges__list">
                         <div className="Badges__container">
-                            <BadgesList badges={state.data}/>
+                            <BadgesList data={data}/>
                         </div>
                     </div>
                 </div>

@@ -3,25 +3,23 @@ import { Link } from 'react-router-dom';
 import './styles/BadgesList.css'
 import Gravatar from './Gravatar';
 
-function useSearchBadges(badges){
+function useSearchBadges(data){
     const [query, setQuery] = React.useState('');
-    const [filteredBadges, setFilteredBadges]= React.useState(badges)
-
+    const [filteredBadges, setFilteredBadges]= React.useState(data)
     React.useMemo(
         ()=>{ 
-            const result= badges.filter(badge=>{
-        return `${badge.firstName} ${badge.lastName}`.toLowerCase().includes(query.toLowerCase())
+            const result= data.filter(data=>{
+        return `${data.firstName} ${data.lastName}`.toLowerCase().includes(query.toLowerCase())
     })
         setFilteredBadges(result)
-    }, [badges, query]);
+    }, [data, query]);
 
     return {filteredBadges,setQuery, query}
 }
 
-function BadgesList(props){
-    const badges = props.badges
+function BadgesList({data}){
 
-        const {query,setQuery, filteredBadges}= useSearchBadges(badges)
+    const {query,setQuery, filteredBadges}= useSearchBadges(data)
 
         if(filteredBadges.length === 0){
             return (
@@ -77,6 +75,9 @@ function BadgesList(props){
         })}
     </ul>
     </div>)
+    // return(
+    //     <h1>{data[0].firstName}</h1>
+    // )
 }
 
 export default BadgesList; 
