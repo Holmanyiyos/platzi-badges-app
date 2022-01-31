@@ -3,7 +3,6 @@ import React from 'react';
 import './styles/BadgeEdit.css'
 import Badge from '../components/Badge';
 import BadgeForm from '../components/BadgeForm';
-import {apiProvider} from '../api';
 import PageLoading from '../components/PageLoading';
 
 

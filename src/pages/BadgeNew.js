@@ -1,16 +1,16 @@
-import React from 'react';
-
+import React, { useContext, useState } from 'react';
 import './styles/BadgeNew.css'
 import Badge from '../components/Badge';
 import BadgeForm from '../components/BadgeForm';
-import {apiProvider} from '../api';
 import PageLoading from '../components/PageLoading';
+import { badgeContext } from '../api';
 
 
 import header from '../images/platziconf-logo.svg';
 
-class BadgeNew extends React.Component{
-    state = { 
+function BadgeNew(){
+    const {addNewBadge} = useContext(badgeContext)
+    const [state, setState] = useState({ 
         loading: false,
         error: null,
         form: {
@@ -19,37 +19,30 @@ class BadgeNew extends React.Component{
         email: '',
         jobTitle: '',
         twitter: '',
-    }};
+    }})
 
-    handleChange= e =>{
-        this.setState({
+    const handleChange= e =>{
+        setState({
             form: {
-                ...this.state.form,
+                ...state.form,
                 [e.target.name]: e.target.value,
             },
         });
     };
 
-    handleSubmit = async e =>{
+    const handleSubmit = async e =>{
         e.preventDefault()
-        this.setState({loading: true, error: null})
-        console.log(this.state.form)
-
-        // try{
-        //     await api.badges.create(this.state.form)
-        //     this.setState({loading: false})
-
-        //     this.props.history.push('/badges');
-        // } catch(error){
-        //     this.setState({loading: false, error: error})
-        // }
+        setState({loading: true, error: null})
+        try{
+            await addNewBadge(state.form)
+            setState({loading: false})
+        } catch(error){
+            setState({loading: false, error: error})
+        }
     }
 
-    render(){
-        if(this.state.loading){
-            return <PageLoading/>
-        }
-        return(
+    return(
+        (state.loading) ? <PageLoading/> :
             <React.Fragment>
                 <div className="BadgeNew__hero">
                     <img className="img-fluid" src={header} alt="logo"/>
@@ -59,26 +52,26 @@ class BadgeNew extends React.Component{
                     <div className="row">
                        <div className="col-6">
                             <Badge 
-                            firstName = {this.state.form.firstName || 'First Name'}
-                            lastName={this.state.form.lastName || 'Last Name'}
-                            jobTitle={this.state.form.jobTitle || 'Job Title'}
-                            twitter={this.state.form.twitter || 'Twitter'}
-                            email={this.state.form.email || 'Email'}/>   
+                            firstName = {state.form.firstName || 'First Name'}
+                            lastName={state.form.lastName || 'Last Name'}
+                            jobTitle={state.form.jobTitle || 'Job Title'}
+                            twitter={state.form.twitter || 'Twitter'}
+                            email={state.form.email || 'Email'}/>   
                         </div> 
                 <div className="col-6">
                 <h1>New Attendant</h1>
                     <BadgeForm 
-                    onChange= {this.handleChange} 
-                    onSubmit={this.handleSubmit}
-                    formsValues={this.state.form}
-                    error={this.state.error}
+                    onChange= {handleChange} 
+                    onSubmit={handleSubmit}
+                    formsValues={state.form}
+                    error={state.error}
                     />
                 </div>
                     </div>
                 </div>
             </React.Fragment>
-        )
-    }
+    )
 }
+
 
 export default BadgeNew;

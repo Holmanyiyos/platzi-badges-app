@@ -12,7 +12,7 @@ import PageError from '../components/PageError';
 
 
 function Badges (){
-    const {loading, setLoading,badgeList, setBadgeList, state, setState, data} = React.useContext(badgeContext)
+    const {loading, setLoading, state, setState, data} = React.useContext(badgeContext)
     useEffect(()=>{
         if (data.length > 0) {
             setLoading(false)

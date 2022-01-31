@@ -5,6 +5,7 @@ const badgeContext = React.createContext();
 function ApiProvider(props){
   const [badgeList, setBadgeList] = React.useState("list");
   const [loading, setLoading] = React.useState(true)
+  const [state, setState] = React.useState({error: null})
   const [data, setData] = React.useState([
     {
       id: "2de30c42-9deb-40fc-a41f-05e62b5939a7",
@@ -33,11 +34,20 @@ function ApiProvider(props){
       twitter: "DaphneyTorphy96105",
       avatarUrl: "https://www.gravatar.com/avatar/e74e87d40e55b9ff9791c78892e55cb7?d=identicon"
     }
-  ])
-  const [state, setState] = React.useState({
-    error: null
-})
+  ]);
 
+
+const deleted = (id)=>{
+  const newData = data.filter(item =>item.id !== id)
+  setData(newData)
+}
+
+const addNewBadge = (badge) =>{
+  let newData = [...data];
+  newData.push(badge);
+  console.log(newData)
+  setData(newData) 
+}
 
 
     return(
@@ -49,7 +59,9 @@ function ApiProvider(props){
          setState,
          loading,
          setLoading,
-         data
+         data,
+         deleted,
+         addNewBadge
       }
       }>
         {props.children}
