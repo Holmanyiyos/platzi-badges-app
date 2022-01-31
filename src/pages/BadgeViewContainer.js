@@ -5,44 +5,47 @@ import BadgeView from './BadgeView'
 import {badgeContext} from "../api"
 
 const BadgeViewContainer = ()=>{
-    const {data, deleted} = useContext(badgeContext)
+    const {deleted, searchBadge} = useContext(badgeContext)
+    const [modal, setModal] = useState(false)
     const [state, setState] = useState({
         loading:true,
         error: null,
-        modalIsOpen: false,
+        data: "",
+        id: ""
     })
+    const findId = ()=>{
+        const idArray = (window.location.pathname).split("")
+        const id = idArray.splice(8).join("");
+        return id
+    }
 
+    
     useEffect(()=>{
         fetchData()
-    },[])
-
-
-    const fetchData = async ()=>{
+    },[state])
+        
+    const fetchData =()=>{
         setState({loading: true, error: null});
-
+        const idBadge = findId();
         try {
-            console.log(this.props.match.params.badgeId)
-            setState({loading: false, data: data})
+            const badge = searchBadge(idBadge)[0];
+            setState({loading: false, data: badge, id: idBadge})
         } catch (error) {
             setState({loading: false, error: error})
         };
-    
     }
-    const handleOpenModal = e =>{
-        setState({modalIsOpen: true})
+    const handleOpenModal = () =>{
+        setModal(true)
     }
-    const handleCloseModal = e =>{
-        setState({modalIsOpen: false})
+    const handleCloseModal = () =>{
+        setModal(false)
     }
-    const handleDeleteBadge= async (e) =>{
+    const handleDeleteBadge= () =>{
         setState({loading: true, error: null})
-
+        const id = findId()
         try{
-            const idArray = (this.props.location.pathname).split("")
-            const id = idArray.splice(0, 8).join("")
-            console.log(id)
-            await deleted(id)
-            // this.props.history.push('/badges')
+            deleted(id)
+            window.location.href = "/badges"
         } catch(error){
         setState({loading: false, error: error})
         }
@@ -56,10 +59,10 @@ const BadgeViewContainer = ()=>{
             onOpenModal={handleOpenModal}
             onCloseModal={handleCloseModal}
             onDeleteBadge= {handleDeleteBadge} 
-            modalIsOpen={state.modalIsOpen}
+            modalIsOpen={modal}
             badge={state.data}/>
         
-        )
+    )
 }
 
 export default BadgeViewContainer;

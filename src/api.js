@@ -24,29 +24,50 @@ function ApiProvider(props){
       jobTitle: "Human Research Architect",
       twitter: "ajorRodriguez61545",
       avatarUrl: "https://www.gravatar.com/avatar/d57a8be8cb9219609905da25d5f3e50a?d=identicon"
-    },
-    {
-      id: "63c03386-33a2-4512-9ac1-354ad7bec5e9",
-      firstName: "Daphney",
-      lastName: "Torphy",
-      email: "Ron61@hotmail.com",
-      jobTitle: "National Markets Officer",
-      twitter: "DaphneyTorphy96105",
-      avatarUrl: "https://www.gravatar.com/avatar/e74e87d40e55b9ff9791c78892e55cb7?d=identicon"
     }
   ]);
+  
+React.useEffect(()=>{
+  try {
+    const localStorageItem = localStorage.getItem("VERSION1")
+    if (!localStorageItem) {
+      localStorage.setItem("VERSION1", JSON.stringify(data))
+    }else{
+      const parsedData = JSON.parse(localStorage.getItem("VERSION1")) 
+      setData(parsedData)
+    }
+  } catch (error) {
+    
+  }
+},[])
+
+const saveData = (newData)=>{
+  localStorage.setItem("VERSION1", JSON.stringify(newData))
+}
 
 const deleted = (id)=>{
   const newData = data.filter(item =>item.id !== id)
   setData(newData)
+  saveData(newData)
 }
 
+  const generateId=()=>{
+        let id = Math.random().toString(36).slice(2)
+        return id
+      }
+
 const addNewBadge = (badge) =>{
-  console.log(badge)
+  const idBadge = generateId();
+  badge.id = idBadge
   let newData = [...data];
   newData.push(badge);
-  setData(newData) 
-  return data
+  setData(newData)
+  saveData(newData)
+}
+
+const searchBadge = (id)=>{
+  const filterBadge = data.filter(item =>item.id === id)
+  return filterBadge
 }
 
 
@@ -61,7 +82,8 @@ const addNewBadge = (badge) =>{
          setLoading,
          data,
          deleted,
-         addNewBadge
+         addNewBadge,
+         searchBadge
       }
       }>
         {props.children}

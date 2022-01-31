@@ -8,12 +8,14 @@ import { badgeContext } from '../api';
 
 import header from '../images/platziconf-logo.svg';
 
+
 function BadgeNew(){
     const {addNewBadge} = useContext(badgeContext)
     const [state, setState] = useState({ 
         loading: false,
         error: null,
         form: {
+        id: '',
         firstName: '',
         lastName: '',
         email: '',
@@ -30,17 +32,16 @@ function BadgeNew(){
         });
     };
 
-    const handleSubmit = async e =>{
+    const handleSubmit = e =>{
         e.preventDefault()
         setState({loading: true, error: null})
-        console.log("Entro al handle submit")
+        
         try{
-            await addNewBadge(state.form)
+            addNewBadge(state.form)
             setState({loading: false})
-            console.log("Entro al try del handle submit")
+            window.location.href = "/badges"
         } catch(error){
             setState({loading: false, error: error})
-            console.log("Entro al catch de handle submit")
         }
     }
 
