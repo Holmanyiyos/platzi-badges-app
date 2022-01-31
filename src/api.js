@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // const BASE_URL = 'https://holmanyiyos.github.io/platzi-badges-app';
 const badgeContext = React.createContext();
 
@@ -36,17 +36,17 @@ function ApiProvider(props){
     }
   ]);
 
-
 const deleted = (id)=>{
   const newData = data.filter(item =>item.id !== id)
   setData(newData)
 }
 
 const addNewBadge = (badge) =>{
+  console.log(badge)
   let newData = [...data];
   newData.push(badge);
-  console.log(newData)
   setData(newData) 
+  return data
 }
 
 

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import {badgeContext} from '../api';
-
 import './styles/Badges.css';
 import confLogo from '../images/badge-header.svg'
 import BadgesList from '../components/BadgesList';
@@ -17,10 +16,8 @@ function Badges (){
         if (data.length > 0) {
             setLoading(false)
             setState({error: null})
-        }else{
-            console.log(loading)
         }
-    },[])
+    },[data])
     return(
         (loading)? <PageLoading/> : 
 

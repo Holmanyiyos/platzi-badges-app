@@ -34,6 +34,7 @@ class BadgeForm extends React.Component{
                        <label>Job Title</label>
                        <input onChange={this.props.onChange} className="form-control" type="text" name="jobTitle" value={this.props.formsValues.jobTitle}></input>
                    </div>
+                   
                    <button onClick={this.handleClick} className="btn btn-primary">Save</button>
                </form>
                {this.props.error && <p className="alert alert-danger mt-3" role="alert">{this.props.error.message}</p>}

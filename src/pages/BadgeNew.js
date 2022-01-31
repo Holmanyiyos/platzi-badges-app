@@ -33,11 +33,14 @@ function BadgeNew(){
     const handleSubmit = async e =>{
         e.preventDefault()
         setState({loading: true, error: null})
+        console.log("Entro al handle submit")
         try{
             await addNewBadge(state.form)
             setState({loading: false})
+            console.log("Entro al try del handle submit")
         } catch(error){
             setState({loading: false, error: error})
+            console.log("Entro al catch de handle submit")
         }
     }
 
