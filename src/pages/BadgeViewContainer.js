@@ -15,7 +15,7 @@ const BadgeViewContainer = ()=>{
     })
     const findId = ()=>{
         const idArray = (window.location.pathname).split("")
-        const id = idArray.splice(8).join("");
+        const id = idArray.splice(9).join("");
         return id
     }
 
@@ -45,7 +45,7 @@ const BadgeViewContainer = ()=>{
         const id = findId()
         try{
             deleted(id)
-            window.location.href = "/badges"
+            window.location.hash = "#/badges"
         } catch(error){
         setState({loading: false, error: error})
         }

@@ -26,7 +26,7 @@ const BadgeEdit =()=>{
     },[])
     const findId = ()=>{
         const idArray = (window.location.pathname).split("")
-        const id = idArray.splice(8).reverse().splice(5).reverse().join("");
+        const id = idArray.splice(9).reverse().splice(5).reverse().join("");
         return id
     }
     const fetchData = () =>{
@@ -57,7 +57,7 @@ const BadgeEdit =()=>{
         try{
             update(idBadge , state.form)
             setState({loading: false})
-            window.location.href = "/badges"   
+            window.location.hash = "#/badges"   
         } catch(error){
             setState({loading: false, error: error})
         }
