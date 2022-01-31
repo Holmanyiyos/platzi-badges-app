@@ -46,6 +46,7 @@ const BadgeViewContainer = ()=>{
         try{
             deleted(id)
             window.location.hash = "#/badges"
+            window.location.reload()
         } catch(error){
         setState({loading: false, error: error})
         }
