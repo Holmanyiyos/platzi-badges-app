@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch,Route } from 'react-router-dom';
+import { HashRouter, Switch,Route } from 'react-router-dom';
 import {ApiProvider} from "../api"
 import BadgeNew from '../pages/BadgeNew';
 import Badges from '../pages/Badges';
@@ -8,11 +8,12 @@ import NotFound from '../pages/NotFound';
 import BadgeEdit from '../pages/BadgeEdit';
 import BadgeView from '../pages/BadgeViewContainer';
 import Layout from './Layout';
+// const BASE_URL = 'https://holmanyiyos.github.io/platzi-badges-app';
 
 function App(){
     return(
         <ApiProvider>
-        <BrowserRouter>
+        <HashRouter>
             <Layout>
                 <Switch>
                     <Route exact path="/" component={Homepage}/>
@@ -23,7 +24,7 @@ function App(){
                     <Route component={NotFound}/>
                 </Switch>
             </Layout>
-        </BrowserRouter>
+        </HashRouter>
         </ApiProvider>
     )
 }

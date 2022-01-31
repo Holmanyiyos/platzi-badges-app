@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-// const BASE_URL = 'https://holmanyiyos.github.io/platzi-badges-app';
 const badgeContext = React.createContext();
 
 function ApiProvider(props){
