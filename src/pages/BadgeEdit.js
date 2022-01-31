@@ -25,7 +25,7 @@ const BadgeEdit =()=>{
         fetchData()
     },[])
     const findId = ()=>{
-        const idArray = (window.location.pathname).split("")
+        const idArray = (window.location.hash).split("")
         const id = idArray.splice(9).reverse().splice(5).reverse().join("");
         return id
     }

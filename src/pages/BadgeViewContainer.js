@@ -14,7 +14,7 @@ const BadgeViewContainer = ()=>{
         id: ""
     })
     const findId = ()=>{
-        const idArray = (window.location.pathname).split("")
+        const idArray = (window.location.hash).split("")
         const id = idArray.splice(9).join("");
         return id
     }

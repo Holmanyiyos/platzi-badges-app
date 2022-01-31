@@ -39,7 +39,7 @@ function BadgeNew(){
         try{
             addNewBadge(state.form)
             setState({loading: false})
-            window.location.href = "/badges"
+            window.location.hash = "#/badges"
         } catch(error){
             setState({loading: false, error: error})
         }
