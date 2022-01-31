@@ -65,6 +65,19 @@ const addNewBadge = (badge) =>{
   saveData(newData)
 }
 
+const read =(id)=>{
+  const badge = data.filter(item =>item.id === id)
+  return badge[0]
+}
+
+const update= (id, changes)=>{
+  const index = data.findIndex((item)=>item.id === id)
+ const newData = [...data];
+ newData[index] = changes
+ console.log(newData[index])
+ saveData(newData)
+}
+
 const searchBadge = (id)=>{
   const filterBadge = data.filter(item =>item.id === id)
   return filterBadge
@@ -83,7 +96,9 @@ const searchBadge = (id)=>{
          data,
          deleted,
          addNewBadge,
-         searchBadge
+         searchBadge,
+         read,
+         update
       }
       }>
         {props.children}
