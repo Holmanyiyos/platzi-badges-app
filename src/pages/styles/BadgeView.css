@@ -18,5 +18,25 @@
     justify-content: flex-end;
     margin-bottom: 1rem;
   }
+
+  @media (max-width: 700px) {
+  .container .row{
+    flex-direction: column;
+  }
+  .col:last-child{
+    margin-top: 20px;
+  }
+  .col:last-child div{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 10px;
+  }
+  .col:last-child div .btn{
+    min-width: 100px;
+    min-height: 30px;
+    padding: 0;
+    margin-bottom: 24px;
+  } 
+}
   
   

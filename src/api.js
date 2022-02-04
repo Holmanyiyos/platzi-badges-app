@@ -73,7 +73,6 @@ const update= (id, changes)=>{
   const index = data.findIndex((item)=>item.id === id)
  const newData = [...data];
  newData[index] = changes
- console.log(newData[index])
  saveData(newData)
 }
 

@@ -72,3 +72,10 @@ a.link-unstyled:hover {
 .btn.btn-danger:not(:disabled):not(.disabled):focus {
   box-shadow: 0 0 0 0.2rem rgba(255, 64, 64, 0.5);
 }
+
+
+@media (max-width: 700px) {
+  .Modal .Modal__container{
+    width: 80%;
+  }
+}
